@@ -2,16 +2,17 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="./restaurants.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>Restaurants</title>
   </head>
-  <body>
+  <body id="result-restaurants">
     
     {{#restaurants.length}}
-    <form >
+    <form>
       <ul>
         {{#restaurants}}
-        <input type="radio" name="option" value="{{option}}" checked> {{option}}<br>
+        <input type="radio" name="option" value="{{option}}" unchecked> {{option}}<br>
         {{/restaurants}}
       </ul>
     </form>
@@ -20,16 +21,41 @@
     <p>No Restaurants set</p>
     {{/restaurants.length}}
     
+    <div>Results:
+      <br/>
+      {{#resultSearch.length}}
+      <ul>
+        {{#resultSearch}}
+            <hr>
+            <div><strong>{{name}}</strong></div>
+            <div>Address: {{location.address}}</div>
+            <div>Phone: {{phone}}</div>
+            <div>
+              <a href="{{url}}" target="_blank">
+              <img src="{{image_url}}" alt="{{desc}}" height="42" width="42">
+              </a>
+            </div>
+        {{/resultSearch}}
+      </ul>
+      {{/resultSearch.length}}
+      
+      {{^resultSearch.length}}
+        <p>No one has voted yet / No Result search</p>
+      {{/resultSearch.length}}
+    </div>
+    
+    
+    
     <script>
       $("input:radio").click(function(){
-        alert($(this).val());
         $.ajax({
           method: "POST",
           url: "/options",
           data: { 
             choice: $(this).val() }
         }).done(function( msg ) {
-          alert( "Data Saved: " + msg );
+          $('#result-restaurants').html(msg);
+          // alert( "Data Saved: " + msg );
         });
       });
     </script>
