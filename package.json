@@ -1,0 +1,23 @@
+{
+  "name": "flocklunch",
+  "version": "1.0.0",
+  "description": "A flock app to find a lunch spot",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LunchBunch/FlockLunch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LunchBunch/FlockLunch/issues"
+  },
+  "homepage": "https://github.com/LunchBunch/FlockLunch#readme"
+}
